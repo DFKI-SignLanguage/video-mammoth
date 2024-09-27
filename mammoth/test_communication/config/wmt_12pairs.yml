@@ -1,0 +1,107 @@
+src_vocab:
+  cs: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  de: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  en: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  et: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  fi: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  ru: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  zh: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+tgt_vocab:
+  cs: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  de: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  en: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  et: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  fi: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  ru: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+  zh: /home/local/scaleUpMNMT-data/wmt/many2many.wmt.vocab.src
+overwrite: False
+
+data:
+  # en-X
+  train_en-cs:
+    src_tgt: en-cs
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/en-cs/wmt.en-cs.train.BPE.en
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/en-cs/wmt.en-cs.train.BPE.cs
+  train_en-de:
+    src_tgt: en-de
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/en-de/wmt.en-de.train.BPE.en
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/en-de/wmt.en-de.train.BPE.de
+  train_en-et:
+    src_tgt: en-et
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/en-et/wmt.en-et.train.BPE.en
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/en-et/wmt.en-et.train.BPE.et
+  train_en-fi:
+    src_tgt: en-fi
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/en-fi/wmt.en-fi.train.BPE.en
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/en-fi/wmt.en-fi.train.BPE.fi
+  train_en-ru:
+    src_tgt: en-ru
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/en-ru/wmt.en-ru.train.BPE.en
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/en-ru/wmt.en-ru.train.BPE.ru
+  train_en-zh:
+    src_tgt: en-zh
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/en-zh/wmt.en-zh.train.BPE.en
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/en-zh/wmt.en-zh.train.BPE.zh
+  # X-en
+  train_cs-en:
+    src_tgt: cs-en
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/cs-en/wmt.cs-en.train.BPE.cs
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/cs-en/wmt.cs-en.train.BPE.en
+  train_de-en:
+    src_tgt: de-en
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/de-en/wmt.de-en.train.BPE.de
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/de-en/wmt.de-en.train.BPE.en
+  train_et-en:
+    src_tgt: et-en
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/et-en/wmt.et-en.train.BPE.et
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/et-en/wmt.et-en.train.BPE.en
+  train_fi-en:
+    src_tgt: fi-en
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/fi-en/wmt.fi-en.train.BPE.fi
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/fi-en/wmt.fi-en.train.BPE.en
+  train_ru-en:
+    src_tgt: ru-en
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/ru-en/wmt.ru-en.train.BPE.ru
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/ru-en/wmt.ru-en.train.BPE.en
+  train_zh-en:
+    src_tgt: zh-en
+    path_src: /home/local/scaleUpMNMT-data/wmt/train/zh-en/wmt.zh-en.train.BPE.zh
+    path_tgt: /home/local/scaleUpMNMT-data/wmt/train/zh-en/wmt.zh-en.train.BPE.en
+
+
+batch_size: 4096
+batch_type: tokens
+normalization: tokens
+valid_batch_size: 4096
+max_generator_batches: 2
+ab_layers: ['lin', 'lin']
+hidden_ab_size: 512
+ab_fixed_length: 50
+attention_heads: 2
+encoder_type: transformer
+decoder_type: transformer
+rnn_size: 256
+word_vec_size: 256
+transformer_ff: 2048
+heads: 2
+enc_layers: [2]
+dec_layers: [2]
+dropout: 0.1
+label_smoothing: 0.1
+param_init: 0.0
+param_init_glorot: true
+position_encoding: true
+train_steps: 4
+valid_steps: 100
+warmup_steps: 1
+report_every: 2
+save_checkpoint_steps: 2
+keep_checkpoint: 1
+accum_count: 1
+optim: adafactor
+decay_method: none
+learning_rate: 3.0
+max_grad_norm: 0.0
+seed: 3435
+model_type: text
+node_rank: 0

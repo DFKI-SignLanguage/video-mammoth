@@ -1,0 +1,83 @@
+src_vocab:
+  'bsl': vocabs/phoenix2014t-2000.model
+  
+tgt_vocab:
+  'de': vocabs/phoenix2014t-2000.model
+
+overwrite: False
+tasks:
+  # GPU 0:0
+  train_bsl-de:
+    src_tgt: bsl-de
+    enc_sharing_group: [bsl]
+    dec_sharing_group: [de]
+    node_gpu: 0:0
+    path_src: data/PHOENIX2014T/phoenix14t.pami0.train
+    path_tgt: data/PHOENIX2014T/phoenix14t.pami0.train
+    path_valid_src: data/PHOENIX2014T/phoenix14t.pami0.dev
+    path_valid_tgt: data/PHOENIX2014T/phoenix14t.pami0.dev
+    tokenizer_model: vocabs/phoenix2014t-2000.model
+    transforms: [filtertoolong]
+  
+
+        
+### Transform related opts:
+#### Filter
+src_seq_length: 1024
+tgt_seq_length: 50
+#### Bart
+src_subword_type: sentencepiece
+tgt_subword_type: sentencepiece
+mask_ratio: 0.0
+# replace_length: 0
+
+# silently ignore empty lines in the data
+skip_empty_level: silent
+
+batch_size: 64
+batch_type: sents
+normalization: sents
+valid_batch_size: 64
+max_generator_batches: 0 # disabled
+src_vocab_size: 2000
+tgt_vocab_size: 2000
+encoder_type: transformer
+decoder_type: transformer
+model_dim: 1024
+transformer_ff: 2048
+heads: 8
+enc_layers: [3]
+dec_layers: [3]
+dropout: 0.3
+label_smoothing: 0.3
+weight_decay: 0.001
+param_init: 0.1 
+param_init_glorot: true # xavier
+position_encoding: true
+valid_steps: 1000
+train_steps: 20000
+# warmup_steps: 2000
+report_every: 100
+save_checkpoint_steps: 1000
+# save_checkpoint_steps: 50000
+keep_checkpoint: 10
+accum_count: 1
+optim: adam
+adam_beta1: 0.9
+adam_beta2: 0.998
+learning_rate: 0.005
+start_decay_steps: 1000
+decay_steps: 1000
+# decay_method: noam
+learning_rate_decay: 0.5
+max_grad_norm: 0.0
+seed: 43
+model_type: text
+save_all_gpus: false
+
+world_size: 1
+gpu_ranks: [0]
+node_rank: 0
+
+early_stopping: 8
+early_stopping_criteria: ppl
